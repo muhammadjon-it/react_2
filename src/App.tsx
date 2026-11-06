@@ -25,10 +25,11 @@ function App() {
     e.preventDefault();
     dispatch ({
       type:"EDIT",
-      id:"editUserId",
-      data: {...users, id:editUserId}
+      id:editUserId.id,
+      data: editUserId
     });
     setEditUserId(null)
+    setIsEditOpen(false)
   }
 
   // Delete Student
@@ -148,7 +149,7 @@ function App() {
               required
               placeholder="Enter full name"
               value={editUserId?.name}
-              onChange={(e) => setUsers({ ...setEditUserId, name: e.target.value })}
+              onChange={(e) => setEditUserId({ ...setEditUserId, name: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
 
@@ -160,7 +161,7 @@ function App() {
               required
               placeholder="Enter city"
               value={editUserId?.city}
-              onChange={(e) => setUsers({ ...setEditUserId, city: e.target.value })}
+              onChange={(e) => setEditUserId({ ...setEditUserId, city: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
 
@@ -172,7 +173,7 @@ function App() {
               required
               placeholder="Enter email"
               value={editUserId?.email}
-              onChange={(e) => setUsers({ ...setEditUserId, email: e.target.value })}
+              onChange={(e) => setEditUserId({ ...setEditUserId, email: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
           </div>
