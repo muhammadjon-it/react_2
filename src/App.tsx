@@ -1,16 +1,8 @@
-import React, { createContext, useState } from 'react'
-import { StudentProvider } from './context/StudentContext'
-import Students from './Components/Students'
-
-export const Cntcontext = createContext(0)
+import React from 'react'
 
 const App = () => {
   return (
-    <>
-      <StudentProvider>
-        <Students />
-      </StudentProvider>
-    </>
+    <div>App</div>
   )
 }
 
