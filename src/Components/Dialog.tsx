@@ -1,15 +1,9 @@
 import React from 'react';
 
-export default function Dialog({ title, btnTitle, children, isOpen, setIsOpen }) {
+export default function Dialog({ title,  children, isOpen, setIsOpen }) {
     return (
         <>
-            <button
-                onClick={() => setIsOpen(true)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow text-sm"
-            >
-                {btnTitle}
-            </button>
-
+            
             {isOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                     <div onClick={() => setIsOpen(false)}

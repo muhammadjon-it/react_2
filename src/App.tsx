@@ -5,7 +5,7 @@ import Dialog from "../src/Components/Dialog";
 function App() {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [editUserId, setEditUserId]=useState(null)
+  const [editUserId, setEditUserId] = useState(null)
   const { students, dispatch } = useStudents();
 
   const [users, setUsers] = useState({ name: "", city: "", email: "" });
@@ -23,9 +23,9 @@ function App() {
 
   function editUser(e) {
     e.preventDefault();
-    dispatch ({
-      type:"EDIT",
-      id:editUserId.id,
+    dispatch({
+      type: "EDIT",
+      id: editUserId.id,
       data: editUserId
     });
     setEditUserId(null)
@@ -45,7 +45,14 @@ function App() {
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-800">Students List</h1>
-        <Dialog title={"Add New"} btnTitle={"Add"} isOpen={isAddOpen} setIsOpen={setIsAddOpen}>
+        <button
+          onClick={() => setIsAddOpen(true)}
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow text-sm"
+        >
+          Add
+        </button>
+        <Dialog title={"Add New"}  isOpen={isAddOpen} setIsOpen={setIsAddOpen}>
+
           <form onSubmit={addStudent}>
             <div className="py-4">
               <label className="block text-sm font-medium text-gray-700 my-1">
@@ -127,7 +134,7 @@ function App() {
                     Delete
                   </button>
                   <button
-                    onClick={() =>{setIsEditOpen(true); setEditUserId(student)}}
+                    onClick={() => { setIsEditOpen(true); setEditUserId(student) }}
                     className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 font-medium rounded-md transition-colors"
                   >
                     Edit
@@ -138,7 +145,7 @@ function App() {
           </tbody>
         </table>
       </div>
-      <Dialog title={"Edit"} btnTitle={"Edit"} isOpen={isEditOpen} setIsOpen={setIsEditOpen}>
+      <Dialog title={"Edit"} isOpen={isEditOpen} setIsOpen={setIsEditOpen}>
         <form onSubmit={editUser}>
           <div className="py-4">
             <label className="block text-sm font-medium text-gray-700 my-1">
@@ -149,7 +156,7 @@ function App() {
               required
               placeholder="Enter full name"
               value={editUserId?.name}
-              onChange={(e) => setEditUserId({ ...setEditUserId, name: e.target.value })}
+              onChange={(e) => setEditUserId({ ...editUserId, name: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
 
@@ -161,7 +168,7 @@ function App() {
               required
               placeholder="Enter city"
               value={editUserId?.city}
-              onChange={(e) => setEditUserId({ ...setEditUserId, city: e.target.value })}
+              onChange={(e) => setEditUserId({ ...editUserId, city: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
 
@@ -173,7 +180,7 @@ function App() {
               required
               placeholder="Enter email"
               value={editUserId?.email}
-              onChange={(e) => setEditUserId({ ...setEditUserId, email: e.target.value })}
+              onChange={(e) => setEditUserId({ ...editUserId, email: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
           </div>
