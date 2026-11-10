@@ -74,12 +74,21 @@ export const counterSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
+
+     /// DELETE
+
         deleteUser: (state, { payload: id }) => {
             state.data = state.data.filter((e) => e.id != id)
         },
+
+    /// ADD
+
         addUser: (state, { payload: newUser }) => {
             state.data = [...state.data, newUser]
         },
+
+    /// EDIT
+
         editUser: (state, { payload: newUser }) => {
             state.data = state.data.map((e) => e.id == newUser.id ? newUser : e)
         }
@@ -87,6 +96,4 @@ export const counterSlice = createSlice({
 })
 
 export const { deleteUser, addUser, editUser } = counterSlice.actions
-
-
 export default counterSlice.reducer
