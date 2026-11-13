@@ -1,112 +1,79 @@
 
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getData, deleteData, addData } from '../redux/counter'
-import type { AppDispatch, RootState } from '../../app/store'
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
+import { useForm } from "react-hook-form";
+import axios from "axios";
+
+type FormData = {
+  name: string;
+  email: string;
+};
+
+const api =""
 
 const Home = () => {
-    const [newUser, setNewUser] = useState({
-        name: "",
-        phone: "",
-        city: ""
-    })
-    const dispatch = useDispatch<AppDispatch>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormData>();
 
-    const { data, isLoading, error } = useSelector(
-        (state: RootState) => state.counter
-    )
+  //// ASYNC FUNCTION
 
-    useEffect(() => {
-        dispatch(getData())
-    }, [dispatch])
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await axios.post(
+        api,
+        data
+      );
 
-    if (isLoading) {
-        return <div>Loading...</div>
+      console.log("Server response:", response.data);
+      alert("Data successfully sent!");
+      reset();
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    if (error) {
-        return <div>{error}</div>
-    }
+  return (
+    <div className="max-w-sm mx-auto mt-12 p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+  <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+    Register Form
+  </h1>
 
-    const handleAdd = (e) => {
-        e.preventDefault()
+  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+    <input
+      placeholder="Name"
+      {...register("name", {
+        required: "Name is required",
+      })}
+      className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    {errors.name && (
+      <p className="text-xs text-red-500 -mt-1">{errors.name.message}</p>
+    )}
 
-        dispatch(addData(newUser))
-    }
+    <input
+      placeholder="Email"
+      {...register("email", {
+        required: "Email is required",
+      })}
+      className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    {errors.email && (
+      <p className="text-xs text-red-500 -mt-1">{errors.email.message}</p>
+    )}
 
-    return (
-        <>
-            <div>
-                <h1>Users</h1>
-                <Dialog>
-                    <DialogTrigger>Open</DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>+ Add Users</DialogTitle>
-                        </DialogHeader>
-                        <form
-                        onSubmit={handleAdd} 
-                        className='flex flex-col gap-3'>
-                            <input
-                                placeholder="Name"
-                                value={newUser.name}
-                                onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                            />
+    <button
+      type="submit"
+      disabled={isSubmitting}
+      className="mt-2 py-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold rounded-md transition cursor-pointer disabled:cursor-not-allowed"
+    >
+      {isSubmitting ? "Sending..." : "Register"}
+    </button>
+  </form>
+</div>
 
-                            <input
-                                placeholder="Phone"
-                                value={newUser.phone}
-                                onChange={(e) => setNewUser({ ...newUser, phone: e.target.value })}
-                            />
+  );
+};
 
-                            <input
-                                placeholder="City"
-                                value={newUser.city}
-                                onChange={(e) => setNewUser({ ...newUser, city: e.target.value })}
-                            />
-                            <button type='onsubmit'>Save</button>
-                        </form>
-                    </DialogContent>
-                </Dialog>
-            </div>
-            <div className='flex flex-wrap'>
-                {
-                    data.map((el) => {
-                        return (
-                            <div
-                                key={el.id}
-                                className='border-2 border-black rounded-2xl px-4 m-3'
-                            >
-                                <h1>{el.name}</h1>
-                                <p>{el.phone}</p>
-                                <p>{el.city}</p>
-
-                                <div className='flex gap-3'>
-                                    <button
-                                        onClick={() => dispatch(deleteData(el.id))}
-                                    >
-                                        Delete
-                                    </button>
-
-                                    <button>
-                                        Edit
-                                    </button>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        </>
-    )
-}
-
-export default Home
+export default Home;
