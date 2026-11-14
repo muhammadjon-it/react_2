@@ -26,7 +26,7 @@ const Home = () => {
         data
       );
 
-      console.log("Server response:", response.data);
+      console.log(response.data);
       alert("Data successfully sent!");
       reset();
     } catch (error) {
