@@ -2,8 +2,8 @@ import React, { createContext, useState } from 'react'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import  Layout from './Components/Layout';
-import Home from './Components/Home';
-import About from './Components/About';
+import Home from './pages/Home';
+import About from './pages/About';
 
 export const Cntcontext = createContext(0)
 

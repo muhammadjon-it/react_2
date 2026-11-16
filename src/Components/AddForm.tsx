@@ -7,24 +7,24 @@ type FormData = {
   password: string,
 }
 
-const About = () => {
+const AddForm = () => {
 
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isDirty, },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<FormData>()
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    data
 
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Registration</h1>
+    <div className="flex justify-center items-center">
+      <div className="bg-white p-8 w-full">
+        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">+ Add New User</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>
             <input
@@ -89,14 +89,10 @@ const About = () => {
             Registration successful!
           </p>
         )}
-
-        <p>
-          {isDirty ? "Маълумот тағйир ёфт" : "Маълумот тағйир наёфтааст"}
-        </p> 
       </div>
     </div>
 
   )
 }
 
-export default About
+export default AddForm
