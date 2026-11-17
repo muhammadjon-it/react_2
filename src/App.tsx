@@ -1,9 +1,10 @@
 import React, { createContext, useState } from 'react'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import  Layout from './pages/Layout';
-import Home from './pages/Home';
-import About from './pages/About';
+import  Layout from './Layout/Layout';
+import ZustandSinc from './pages/Zustand/ZustandSinc/ZustandSinc';
+import JotaiSinc from './pages/Jotai/JotaiSinc/JotaiSinc';
+import ReduxSinc from './pages/Redux/ReduxSinc/ReduxSinc';
 
 export const Cntcontext = createContext(0)
 
@@ -15,10 +16,13 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <Home />
+          element: <ZustandSinc />
         }, {
-          path:"about",
-          element: <About />
+          path:"jotaisinc",
+          element: <JotaiSinc />
+        }, {
+          path:"reduxsinc",
+          element: <ReduxSinc />
         },
       ]
     },

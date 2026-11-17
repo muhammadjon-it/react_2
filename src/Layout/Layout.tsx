@@ -14,14 +14,20 @@ const Layout = () => {
                     to="/"
                     className="font-medium text-slate-600 transition hover:text-blue-600"
                 >
-                    Home
+                    Zustand Sinc
                 </Link>
 
                 <Link
-                    to="/about"
+                    to="/jotaisinc"
                     className="font-medium text-slate-600 transition hover:text-blue-600"
                 >
-                    About
+                    Jotai Sinc
+                </Link> 
+                <Link
+                    to="/reduxsinc"
+                    className="font-medium text-slate-600 transition hover:text-blue-600"
+                >
+                   Redux Sinc
                 </Link>
             </nav>
 
