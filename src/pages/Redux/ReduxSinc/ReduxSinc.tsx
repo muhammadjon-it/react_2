@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { AppStore } from '../ReduxSinc/store'
+import type { AppStore } from '../store'
 import { addUser, deleteUser, editUser, checkbox } from '../ReduxSinc/Todo'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -23,7 +23,8 @@ import {
 } from "@/components/ui/dialog"
 
 const ReduxSinc = () => {
-  const { data } = useSelector((store: AppStore) => store.todo)
+ 
+const { data } = useSelector((store: AppStore) => store.todoSinc);
   const dispatch = useDispatch()
   const [addOpen, setAddOpen] = useState(false)
   const [editOpen, setEditOpen] = useState(false)
@@ -215,6 +216,7 @@ const ReduxSinc = () => {
           </TableBody>
         </Table>
       </div>
+      <br /> <br /> <br /> 
     </div>
 
   )

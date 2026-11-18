@@ -4,7 +4,6 @@ export interface IData {
     name: string
     city: string
     phone: string
-    status: boolean
 }
 export interface CounterState {
     value: number
