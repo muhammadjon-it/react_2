@@ -1,42 +1,84 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router'
+
+import { NavLink, Outlet } from "react-router";
 
 const Layout = () => {
     return (
-        <div className="min-h-screen bg-slate-100">
+        <div className="flex min-h-screen bg-[#F5F8FF]">
 
-            <nav className="flex items-center gap-8 border-b bg-white px-8 py-5 shadow-sm">
-                <h1 className="mr-auto text-xl font-bold text-blue-600">
-                    My App
+            <div className="w-64 min-h-screen bg-white border-r border-blue-100 p-6">
+                <h1 className="text-2xl font-bold text-blue-600 mb-10">
+                    DebtTracker
                 </h1>
 
-                <Link
-                    to="/"
-                    className="font-medium text-slate-600 transition hover:text-blue-600"
-                >
-                    Zustand Sinc
-                </Link>
+                <nav className="space-y-2">
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                            `block rounded-xl px-4 py-3 font-medium transition ${isActive
+                                ? "bg-blue-600 text-white"
+                                : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                            }`
+                        }
+                    >
+                        Dashboard
+                    </NavLink>
 
-                <Link
-                    to="/jotaisinc"
-                    className="font-medium text-slate-600 transition hover:text-blue-600"
-                >
-                    Jotai Sinc
-                </Link> 
-                <Link
-                    to="/reduxsinc"
-                    className="font-medium text-slate-600 transition hover:text-blue-600"
-                >
-                   Redux Sinc
-                </Link>
-            </nav>
+                    <NavLink
+                        to="/debts"
+                        className={({ isActive }) =>
+                            `block rounded-xl px-4 py-3 font-medium transition ${isActive
+                                ? "bg-blue-600 text-white"
+                                : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                            }`
+                        }
+                    >
+                        Debts
+                    </NavLink>
 
-            <main className="mx-auto max-w-6xl p-6">
+                    <NavLink
+                        to="/contacts"
+                        className={({ isActive }) =>
+                            `block rounded-xl px-4 py-3 font-medium transition ${isActive
+                                ? "bg-blue-600 text-white"
+                                : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                            }`
+                        }
+                    >
+                        Contacts
+                    </NavLink>
+
+                    <NavLink
+                        to="/folders"
+                        className={({ isActive }) =>
+                            `block rounded-xl px-4 py-3 font-medium transition ${isActive
+                                ? "bg-blue-600 text-white"
+                                : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                            }`
+                        }
+                    >
+                        Folders
+                    </NavLink>
+
+                    <NavLink
+                        to="/profile"
+                        className={({ isActive }) =>
+                            `block rounded-xl px-4 py-3 font-medium transition ${isActive
+                                ? "bg-blue-600 text-white"
+                                : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                            }`
+                        }
+                    >
+                        Profile
+                    </NavLink>
+                </nav>
+            </div>
+
+            <main className="flex-1 p-8">
                 <Outlet />
             </main>
 
         </div>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;
